@@ -1,0 +1,19 @@
+.page-header
+	.row	
+		.span4{style: "margin-left: 40px"}
+			%h4#yandex-link 
+				Топ-новости с
+				= link_to 'Яндекса', 'http://yandex.ru'
+.span12
+	%ul
+		- @feeds.each do |f|
+			%li#feed-item
+				.row
+					= link_to f.title, f.url
+				.row{style: "margin-left: 10px; padding-top: 5px;"}
+					= "#{f.body}..."
+				.row{style: "margin-left: 10px"}
+					%h6 
+						= f.published_at.strftime("%d.%m.%Y %H:%M")	
+	.flickr_pagination
+		= will_paginate @feeds

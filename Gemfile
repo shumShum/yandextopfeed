@@ -21,3 +21,8 @@ gem 'jquery-rails'
 
 gem 'haml-rails'
 gem 'rspec'
+
+gem 'feedzirra'
+gem 'whenever', :require => false
+
+gem 'will_paginate'

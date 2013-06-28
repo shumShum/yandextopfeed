@@ -1,0 +1,14 @@
+!!! 5
+%html
+	%head
+		%title Calendar
+		= stylesheet_link_tag    "bootstrap", :media => "all"
+		= stylesheet_link_tag    "application", :media => "all"
+		= javascript_include_tag "application"
+		= csrf_meta_tags
+	%body
+		.container{style: "min-height: 100%;"}
+			= yield
+		%footer.footer.container
+			%h6
+				by G.Shumilkin, 2013

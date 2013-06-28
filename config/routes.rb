@@ -1,5 +1,6 @@
 Yandextopfeed::Application.routes.draw do
-  
-  resources :feeds
+
+  resources :feeds, {only: :index}
+  root to: 'feeds#index'
 
 end
