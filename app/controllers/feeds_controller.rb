@@ -6,25 +6,18 @@ class FeedsController < ApplicationController
 	end
 
 	def out_by_time
-		time = DateTime.now - case params[:time_option]
-			when 'all'
-				2.year
-			when 'hour'
-				1.hour
-			when '3hour'
-				3.hour
-			when 'day'
-				1.day
-			when 'week'
-				1.week
-			when '2week'
-				2.week
-			end
-		@feeds = Feed.paginate(page: params[:page], per_page: 10)
-			.where(published_at: time..Time.now)
-			.order('published_at DESC')
+		@feeds = Feed.return_by_time(params[:time_option], params[:page])
 		respond_to do |format|
-      format.html { redirect_to root_url }
+      format.html { redirect_to root_url(page: params[:page]) }
+      format.js
+    end
+	end
+
+	def put_feeds
+		Feed.put_feeds
+		@feeds = Feed.return_by_time(params[:time_option], params[:page])
+		respond_to do |format|
+      format.html { redirect_to root_url(page: params[:page]) }
       format.js
     end
 	end

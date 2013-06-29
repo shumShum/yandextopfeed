@@ -6,9 +6,15 @@
 				= link_to 'Яндекса', 'http://yandex.ru'
 .span12
 	#options
-		Показывать
-		= select_tag "options", options_for_select({"все" => "all", "за час" => "hour", "за три часа" => "3hour", "за сутки" => "day", "за неделю" => "week", "за две недели" => "2week"}), options = {style: "width: 150px; margin-left: 10px;"}
-	%ul#feeds-list
+		.span4
+			Показывать
+			= select_tag "time_options", options_for_select({"все" => "all", "за час" => "hour", "за три часа" => "3hour", "за сутки" => "day", "за неделю" => "week", "за две недели" => "2week"}), options = {style: "width: 150px; margin-left: 10px;"}
+		.span6
+			Фильтр
+			= text_field :text, :options, style: "width: 150px; margin-left: 10px;"
+		.span1
+			= link_to image_tag( 'load.png'), '#', { :class=>"thumbnail", style: 'width: 23px;', id: 'load_feeds'}
+	%ul.span12#feeds-list
 		= render 'feeds_list'
-	.flickr_pagination#pagination
+	.flickr_pagination.span12#pagination
 		= render 'paginate'

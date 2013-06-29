@@ -12,6 +12,26 @@ class Feed < ActiveRecord::Base
   	add_entries(feed.entries)
   end
 
+  def self.return_by_time(time_option, page)
+    time = DateTime.now - case time_option
+      when 'all'
+        2.year
+      when 'hour'
+        1.hour
+      when '3hour'
+        3.hour
+      when 'day'
+        1.day
+      when 'week'
+        1.week
+      when '2week'
+        2.week
+      end
+    feeds = Feed.paginate(page: page, per_page: 10)
+      .where(published_at: time..Time.now)
+      .order('published_at DESC')
+  end
+
   private
   
   def self.add_entries(entries)
