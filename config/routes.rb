@@ -1,6 +1,11 @@
 Yandextopfeed::Application.routes.draw do
 
-  resources :feeds, {only: :index}
+  resources :feeds, {only: :index} do 
+  	collection {
+  		get :out_by_time
+  	}
+  end
+  get '/out_by_time' => 'feeds#out_by_time'
   root to: 'feeds#index'
 
 end

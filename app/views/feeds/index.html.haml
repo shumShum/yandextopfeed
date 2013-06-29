@@ -5,15 +5,10 @@
 				Топ-новости с
 				= link_to 'Яндекса', 'http://yandex.ru'
 .span12
-	%ul
-		- @feeds.each do |f|
-			%li#feed-item
-				.row
-					= link_to f.title, f.url
-				.row{style: "margin-left: 10px; padding-top: 5px;"}
-					= "#{f.body}..."
-				.row{style: "margin-left: 10px"}
-					%h6 
-						= f.published_at.strftime("%d.%m.%Y %H:%M")	
-	.flickr_pagination
-		= will_paginate @feeds
+	#options
+		Показывать
+		= select_tag "options", options_for_select({"все" => "all", "за час" => "hour", "за три часа" => "3hour", "за сутки" => "day", "за неделю" => "week", "за две недели" => "2week"}), options = {style: "width: 150px; margin-left: 10px;"}
+	%ul#feeds-list
+		= render 'feeds_list'
+	.flickr_pagination#pagination
+		= render 'paginate'
