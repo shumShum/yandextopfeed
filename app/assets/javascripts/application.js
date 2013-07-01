@@ -50,5 +50,11 @@ $(function() {
       }
     });
   });
-});   
+});
+
+// $(function() {
+//   $('#feed-item').on('click', '#destroy_feed', function(e) {
+//     console.log();
+//   });
+// });   
 

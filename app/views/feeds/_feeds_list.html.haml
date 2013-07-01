@@ -1,9 +1,14 @@
 - @feeds.each do |f|
 	%li#feed-item
 		.row
-			= link_to f.title, f.url
+			.span11{style: "margin-left: 0px;"}
+				= link_to f.title, f.url
+			.span1
+				= link_to image_tag('destroy.png'), feed_path(f.as_json), method: :delete, remote: true, style: "width: 10px; text-align: right;", class: 'thumbnail'
+
 		.row{style: "margin-left: 10px; padding-top: 5px;"}
-			= "#{f.body.gsub('&quot;','"')}..."
+			.span10
+				= "#{f.body.gsub('&quot;','"')}..."
 		.row{style: "margin-left: 10px"}
 			%h6 
 				= f.published_at.strftime("%d.%m.%Y %H:%M")

@@ -2,8 +2,21 @@ html, body {
 	height: 100%;
 }
 
+#options {
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 20px;
+}
+
 #yandex-link a {
 	color: #fc0;
+}
+
+.destroy_feed {
+  color: #ff0084;
+}
+
+.destroy_feed:hover {
+  color: #911;
 }
 
 .footer {

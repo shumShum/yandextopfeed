@@ -5,7 +5,7 @@
 				Топ-новости с
 				= link_to 'Яндекса', 'http://yandex.ru'
 .span12
-	#options
+	.row#options
 		.span4
 			Показывать
 			= select_tag "time_options", options_for_select({"все" => "all", "за час" => "hour", "за три часа" => "3hour", "за сутки" => "day", "за неделю" => "week", "за две недели" => "2week"}), options = {style: "width: 150px; margin-left: 10px;"}
