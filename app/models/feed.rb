@@ -32,6 +32,20 @@ class Feed < ActiveRecord::Base
       .order('published_at DESC')
   end
 
+  def self.return_by_text(feeds, text)
+    # out_feeds = []
+    # feeds.each do |f|
+    #   text.split(", ").each do |t|
+    #     out_feeds.push(f) if f.title.index(t).present? || f.body.index(t).present?
+    #   end
+    # end
+    # out_feeds.compact
+    text.split(", ").each do |t|
+      feeds = feeds.where('(title LIKE ?) OR (body LIKE ?)', "%#{t}%", "%#{t}%")
+    end
+    feeds
+  end
+
   private
   
   def self.add_entries(entries)
