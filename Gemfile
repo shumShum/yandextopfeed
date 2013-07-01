@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "1.9.3"
 
 gem 'rails', '3.2.13'
 
@@ -22,7 +23,12 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'rspec'
 
+gem 'loofah'
 gem 'feedzirra'
 gem 'whenever', :require => false
 
 gem 'will_paginate'
+
+group :production do
+  gem 'pg'
+end
