@@ -1,7 +1,7 @@
-every :minute do 
- 	runner Feed.put_feeds
+every :hour do 
+ 	runner 'Feed.put_feeds'
 end
 
 every :month do
-	runner Feed.destroy_all
+	runner 'Feed.destroy_all'
 end
