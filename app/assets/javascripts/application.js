@@ -4,25 +4,33 @@
 
 $(function() {
   $('#options').on('change', '#time_options', function(e) {
-    var time = $(this)[0].value;
-    var text = $('#text_options')[0].value;
-    out_by_options(time, text);
+    out_by_options();
   });
 });
 
 $(function() {
   $('#options').on('change', '#text_options', function(e) {
-    var text = $(this)[0].value;
-    var time = $('#time_options')[0].value;
-    out_by_options(time, text);
+    out_by_options();
   });
 });
 
-function out_by_options(time, text){
+$(function() {
+  $('#options').on('click', '#check_options', function(e) {
+    var check = $('#check_options')[0].name;
+    if (check === 'true') {$('#check_options')[0].name = 'false'}
+    if (check === 'false') {$('#check_options')[0].name = 'true'} 
+    out_by_options();
+  });
+});
+
+function out_by_options(){
+  var time = $('#time_options')[0].value;
+  var text = $('#text_options')[0].value;
+  var check = $('#check_options')[0].name;
   $.ajax({
     url: '/out_by_options',
     type: 'GET',
-    data: {time_option: time, text_option: text},
+    data: {time_option: time, text_option: text, check_option: check},
     dataType: 'script',
     async: true,
 

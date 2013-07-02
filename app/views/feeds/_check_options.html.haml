@@ -1,0 +1,4 @@
+- if @check_option
+	= link_to image_tag( 'checked.png'), '#', { :class=>"thumbnail", style: 'width: 23px;', id: 'check_options', name: 'true'}
+- else
+	= link_to image_tag( 'unchecked.png'), '#', { :class=>"thumbnail", style: 'width: 23px;', id: 'check_options', name: 'false'}

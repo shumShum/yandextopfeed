@@ -1,0 +1,1 @@
+$(".is_checked").find("#<%= @feed.id %>").html("<%= escape_javascript(render partial: 'feeds/is_checked', locals: {f: @feed}) %>");

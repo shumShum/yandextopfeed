@@ -1,6 +1,6 @@
 Yandextopfeed::Application.routes.draw do
 
-  resources :feeds, {only: [:index, :destroy]} do 
+  resources :feeds, {only: [:index, :update]} do 
   	collection {
   		get :out_by_options
   		get :put_feeds

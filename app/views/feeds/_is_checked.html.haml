@@ -1,0 +1,4 @@
+- if f.is_checked?
+	= link_to image_tag('checked.png'), feed_path(f, :feed => { is_checked: false}), method: :put, remote: true, id: f.id
+- else
+	= link_to image_tag('unchecked.png'), feed_path(f, :feed => { is_checked: true}), method: :put, remote: true, id: f.id

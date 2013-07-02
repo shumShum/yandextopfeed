@@ -3,6 +3,8 @@
 		.row
 			.span11{style: "margin-left: 0px;"}
 				= link_to f.title, f.url
+			.span1.is_checked{style: "width: 16px;"}
+				= render partial: 'feeds/is_checked', locals: {f: f}
 		.row{style: "margin-left: 10px; padding-top: 5px;"}
 			.span10
 				= "#{f.body.gsub('&quot;','"')}..."

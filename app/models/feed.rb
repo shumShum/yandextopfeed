@@ -1,7 +1,7 @@
 class Feed < ActiveRecord::Base
 	YA_RSS_URL = 'http://news.yandex.ru/index.rss'
 
-  attr_accessible :title, :body, :url, :published_at, :guid
+  attr_accessible :title, :body, :url, :published_at, :guid, :is_checked
 
   validates :title, presence: true
   validates :body, presence: true
@@ -41,7 +41,11 @@ class Feed < ActiveRecord::Base
     # end
     # out_feeds.compact
     text.split(", ").each do |t|
-      feeds = feeds.where('(title ILIKE ?) OR (body ILIKE ?)', "%#{t}%", "%#{t}%")
+      if Rails.env.production?
+        feeds = feeds.where('(title ILIKE ?) OR (body ILIKE ?)', "%#{t}%", "%#{t}%")
+      else
+        feeds = feeds.where('(title LIKE ?) OR (body LIKE ?)', "%#{t}%", "%#{t}%")
+      end
     end
     feeds
   end
