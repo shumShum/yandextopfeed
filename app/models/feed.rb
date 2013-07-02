@@ -41,7 +41,7 @@ class Feed < ActiveRecord::Base
     # end
     # out_feeds.compact
     text.split(", ").each do |t|
-      feeds = feeds.where('(title LIKE ?) OR (body LIKE ?)', "%#{t}%", "%#{t}%")
+      feeds = feeds.where('(title ILIKE ?) OR (body ILIKE ?)', "%#{t}%", "%#{t}%")
     end
     feeds
   end
