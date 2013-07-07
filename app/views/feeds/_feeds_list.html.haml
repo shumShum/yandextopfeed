@@ -2,12 +2,11 @@
 	%li#feed-item
 		.row
 			.span11{style: "margin-left: 0px;"}
-				= link_to f.title, f.url
+				= link_to f.body, f.url
+				%font{color: "#999"}
+					= "(#{f.title})"
 			.span1.is_checked{style: "width: 16px;"}
 				= render partial: 'feeds/is_checked', locals: {f: f}
-		.row{style: "margin-left: 10px; padding-top: 5px;"}
-			.span10
-				= "#{f.body.gsub('&quot;','"')}..."
 		.row{style: "margin-left: 10px"}
 			%h6 
 				= f.published_at.strftime("%d.%m.%Y %H:%M")

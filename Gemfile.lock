@@ -155,6 +155,7 @@ DEPENDENCIES
   jquery-rails
   loofah
   mysql2
+  nokogiri
   pg
   rails (= 3.2.13)
   rb-readline (~> 0.4.2)

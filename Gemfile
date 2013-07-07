@@ -25,6 +25,7 @@ gem 'rspec'
 
 gem 'loofah'
 gem 'feedzirra'
+gem 'nokogiri'
 gem 'whenever', :require => false
 
 gem 'will_paginate'

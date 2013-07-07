@@ -1,3 +1,5 @@
+# encoding: utf-8
+require 'open-uri'
 class Feed < ActiveRecord::Base
 	YA_RSS_URL = 'http://news.yandex.ru/index.rss'
 
@@ -8,8 +10,13 @@ class Feed < ActiveRecord::Base
   validates :url, presence: true
 
   def self.put_feeds
-  	feed = Feedzirra::Feed.fetch_and_parse(YA_RSS_URL)
-  	add_entries(feed.entries)
+  	# feed = Feedzirra::Feed.fetch_and_parse(YA_RSS_URL)
+  	# add_entries(feed.entries)
+    page = Nokogiri::HTML(open("http://yandex.ru").read).xpath("//div[@class = 'b-news']")[0]
+    lists = page.xpath("//ul[@class = 'b-news-list']")
+    parse_list(lists[0], 'Новости')
+    parse_list(lists[1], 'В Москве')
+    parse_list(lists[2], 'В блогах')
   end
 
   def self.return_by_time(time_option, page)
@@ -51,6 +58,19 @@ class Feed < ActiveRecord::Base
   end
 
   private
+
+  def self.parse_list(list, i)
+    list.element_children.each do |li|
+      url = li.css('a')[0]['href']
+      unless exists? url: url
+        create!(
+          title: i,
+          body: li.content.insert(2, ' '),
+          url: url,
+          published_at: Time.now)
+      end
+    end
+  end
   
   def self.add_entries(entries)
     entries.each do |entry|
